@@ -20,6 +20,7 @@ public class StarService {
         Map<Long, Integer> starsMap = new TreeMap<Long, Integer>();
         List<Star> starsCopy = new ArrayList<>(stars);
         starsCopy.sort(Comparator.comparing(Star::getDistance, Comparator.naturalOrder()));
+
         for (Star star : starsCopy) {
             if (starsMap.containsKey(star.getDistance())) {
                 Integer value = starsMap.get(star.getDistance());
@@ -47,7 +48,7 @@ public class StarService {
                 uniqueStars.add(star);
             }
         }
-
         return uniqueStars;
     }
+
 }
