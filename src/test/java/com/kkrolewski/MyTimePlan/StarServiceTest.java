@@ -12,6 +12,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class StarServiceTest {
 
+    private final StarService starService = new StarService();
+
     @Test
     public void findClosestStarsTest(){
     List<Star> stars = new ArrayList<>();
@@ -28,7 +30,7 @@ public class StarServiceTest {
     stars.add(star4);
     stars.add(star5);
 
-    List<Star> testStars = StarService.findClosestStars(stars,3);
+    List<Star> testStars = starService.findClosestStars(stars,3);
 
     assertEquals(3, testStars.size());
     assertEquals(10000L, testStars.get(0).getDistance());
@@ -55,7 +57,7 @@ public class StarServiceTest {
         stars.add(star4);
         stars.add(star5);
 
-        Map<Long, Integer> testStars = StarService.getNumberOfStarsByDistances(stars);
+        Map<Long, Integer> testStars = starService.getNumberOfStarsByDistances(stars);
         assertEquals(4, testStars.size());
         assertEquals(1, testStars.get(10000L));
         assertEquals(2, testStars.get(30000L));
@@ -79,7 +81,7 @@ public class StarServiceTest {
         stars.add(star4);
         stars.add(star5);
 
-        Collection<Star> testStars = StarService.getUniqueStars(stars);
+        Collection<Star> testStars = starService.getUniqueStars(stars);
         assertEquals(1, testStars.size());
         assertTrue(testStars.contains(star5));
         assertFalse(testStars.contains(star3));

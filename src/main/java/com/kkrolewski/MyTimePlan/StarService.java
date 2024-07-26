@@ -1,16 +1,22 @@
 package com.kkrolewski.MyTimePlan;
 
+import org.springframework.stereotype.Service;
+
 import java.util.*;
 
+@Service
 public class StarService {
 
-    public static List<Star> findClosestStars(List<Star> stars, int size){
+    public StarService() {
+    }
+
+    public List<Star> findClosestStars(List<Star> stars, int size){
         List<Star> starsCopy = new ArrayList<>(stars);
         starsCopy.sort(Comparator.comparing(Star::getDistance, Comparator.naturalOrder()));
         return starsCopy.subList(0,size);
     }
 
-    public static Map<Long, Integer> getNumberOfStarsByDistances(List<Star> stars){
+    public Map<Long, Integer> getNumberOfStarsByDistances(List<Star> stars){
         Map<Long, Integer> starsMap = new TreeMap<Long, Integer>();
         List<Star> starsCopy = new ArrayList<>(stars);
         starsCopy.sort(Comparator.comparing(Star::getDistance, Comparator.naturalOrder()));
@@ -25,7 +31,7 @@ public class StarService {
         return starsMap;
     }
 
-    public static Collection<Star> getUniqueStars(Collection<Star> stars) {
+    public Collection<Star> getUniqueStars(Collection<Star> stars) {
         Set<String> uniqueNames = new HashSet<>();
         Set<String> duplicatedNames = new HashSet<>();
         Collection<Star> uniqueStars = new HashSet<>();
